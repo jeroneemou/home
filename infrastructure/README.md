@@ -1,7 +1,22 @@
 # Home infrastructure
 
 ## Deployment
-Make sure to have docker-compose stack running and than simply run `docker-compose run --rm infrastructure cdk deploy '*'`. That should do the trick!
+
+Please follow the order for deployment of depending parts of application
+
+### Hosted zone
+
+- Run `docker-compose run --rm infrastructure cdk deploy ApplicationHostedZone`
+- Register outputted DNS records to your domain for forwarding of handling.
+- **WARNING**: Make sure to wait long enough to propagate DNS changes in order to proceed with next step.
+
+### Certificates
+
+- Run `docker-compose run --rm infrastructure cdk deploy ApplicationCertificates`
+
+### Application
+
+- Run `docker-compose run --rm infrastructure cdk deploy Application`
 
 ## Useful infrastructure commands
 
@@ -10,3 +25,6 @@ Make sure to have docker-compose stack running and than simply run `docker-compo
  * `cdk deploy`      deploy this stack to your default AWS account/region
  * `cdk diff`        compare deployed stack with current state
  * `cdk synth`       emits the synthesized CloudFormation template
+
+## Links
+CDK Documentation - https://docs.aws.amazon.com/cdk/api/latest/

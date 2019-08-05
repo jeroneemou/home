@@ -1,19 +1,29 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import cdk = require('@aws-cdk/core');
-import { Route53 } from '../lib/route53';
-import { App } from '../lib/app';
-import { CDN } from '../lib/cdn';
+import { Application } from '../lib/application';
+import { ApplicationHostedZone } from '../lib/hostedzone';
+import { ApplicationCertificates } from '../lib/certificates';
 
 const app = new cdk.App();
 
-// Manage application
-const application = new App(app, 'Application');
+const domainName = 'whatever.ninja';
 
-const cdn = new CDN(app, 'CDN', {
-    bucket: application.bucket
+// Create hosted zone for whole application
+const zones = new ApplicationHostedZone(app, 'ApplicationHostedZone', {
+    domainName: domainName
 })
 
-// Manage domains
-const route53 = new Route53(app, 'Route53');
+// Create certificates required and validated via hosted zone
+const certificates = new ApplicationCertificates(app, 'ApplicationCertificates', {
+    domainName: domainName,
+    zone: zones.zone
+})
+
+// Bootstrap application infrastructure
+const application = new Application(app, 'Application', {
+    domainName: domainName,
+    certificate: certificates.certificate,
+    zone: zones.zone
+});
 
