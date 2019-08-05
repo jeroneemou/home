@@ -8,7 +8,8 @@ import { CloudFrontTarget } from '@aws-cdk/aws-route53-targets';
 interface ApplicationProps extends StackProps {
     domainName: string;
     zone: IHostedZone;
-    certificate: ICertificate;
+    // certificate: ICertificate;
+    certificateArn: string;
 }
 
 export class Application extends Stack {
@@ -28,7 +29,8 @@ export class Application extends Stack {
         const distribution = new CloudFrontWebDistribution(this, 'Distribution', {
 
             aliasConfiguration: {
-                acmCertRef: props.certificate.certificateArn,
+                // acmCertRef: props.certificate.certificateArn,
+                acmCertRef: props.certificateArn,
                 names: [ props.domainName ],
                 sslMethod: SSLMethod.SNI,
                 securityPolicy: SecurityPolicyProtocol.TLS_V1_1_2016,

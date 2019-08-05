@@ -19,7 +19,7 @@ export class ApplicationCertificates extends Stack {
         this.certificate =  new DnsValidatedCertificate(this, 'HomeCertificate', {
             domainName: props.domainName,
             hostedZone: props.zone,
-            region: NVirginiaRegion // TODO viriginia
+            region: NVirginiaRegion
         });
 
         // Output
