@@ -1,5 +1,11 @@
 # Home infrastructure
 
+## Prerequisities
+
+You will need:
+- Own AWS account - https://aws.amazon.com/
+- Credentials for your .env file. Just run `cp .env.dist .env` and fill out all the variables within.
+
 ## Deployment
 
 Please follow the order for deployment of depending parts of application

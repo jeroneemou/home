@@ -6,3 +6,6 @@ Build with:
 * Node https://nodejs.org/en/
 * AWD CDK https://aws.amazon.com/cdk/
 * Static HTML - for now :)
+
+## Before you jump any further
+Run `docker-compose build` to prepare everything for your digging!
