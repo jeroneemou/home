@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  infrastructure:
+    image: jeroneemou/infrastructure
+    build: ./docker/infrastructure
+    volumes: 
+      - ./infrastructure:/infrastructure
+    working_dir: /infrastructure
+    env_file:
+      - ./infrastructure/.env
