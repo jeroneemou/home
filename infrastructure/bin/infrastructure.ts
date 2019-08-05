@@ -26,7 +26,8 @@ const certArn = ''; // TODO hardcode ARN
 // Bootstrap application infrastructure
 const application = new Application(app, 'Application', {
     domainName: domainName,
-    certificate: certificates.certificate,
+    certificateArn: certArn,
+    // certificate: certificates.certificate,
     zone: zones.zone
 });
 
